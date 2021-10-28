@@ -20,7 +20,9 @@ public class BaseDatosSimulada {
      * @return la cantidad de € que ha conseguido sacar
      * @throws InterruptedException
      */
-    public static int sacarDinero(int cantidad) throws InterruptedException {
+    static boolean enUso = false;
+
+    public synchronized static int sacarDinero(int cantidad) throws InterruptedException {
         int saldo = obtenerSaldo();
         if (saldo - cantidad >= 0) {
             actualizarSaldo(saldo - cantidad);
@@ -30,6 +32,7 @@ public class BaseDatosSimulada {
             System.out.println("No había cantidad de € suficientes");
             return 0;
         }
+
     }
 
     public static void imprimirSaldo(){
